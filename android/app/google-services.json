@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "426809770281",
+    "project_id": "intown-7ca43",
+    "storage_bucket": "intown-7ca43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426809770281:android:8b53d44abf218e062ff738",
+        "android_client_info": {
+          "package_name": "io.amany.intown"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXUYu0HoBFem6Wa74ooJw6WmFvJLar8JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

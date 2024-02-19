@@ -1,4 +1,4 @@
-package com.intown
+package io.amany.intown
 
 import android.app.Application
 import com.facebook.react.PackageList
