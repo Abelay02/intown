@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Button,
   StyleSheet,
   Text,
   useColorScheme,
@@ -19,6 +20,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import MyTabs from './navigation/TabNavigator';
 
 import { AppRegistry } from 'react-native';
@@ -29,6 +31,7 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import AuthScreen from './screens/AuthScreen';
 
 AppRegistry.registerComponent(appName, () => App);
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [initializing, setInitializing] = useState(true);
@@ -37,6 +40,15 @@ export default function App() {
   function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
     setUser(user);
     if (initializing) setInitializing(false);
+  }
+
+  function CustomDrawerContent(props: any) {
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem label="Sign Out" onPress={() => auth().signOut()} />
+      </DrawerContentScrollView>
+    );
   }
 
   useEffect(() => {
@@ -54,7 +66,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MyTabs />
+      <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
+        <Drawer.Screen name="Intown" component={MyTabs} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

@@ -28,6 +28,26 @@ const AuthScreen = () => {
       });
   };
 
+  const handleLogin = () => {
+    // Assuming email and password state variables exist
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('User account created & signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+  
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+  
+        console.error(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <TextInput placeholder="Email" value={email}
@@ -36,7 +56,7 @@ const AuthScreen = () => {
         onChangeText={setPassword} secureTextEntry={true} style={styles.input} />
       {isLoginScreen ? (
         <>
-          <Button title="Login" onPress={() => {}} />
+          <Button title="Login" onPress={handleLogin} />
           <Button title="Sign up instead" onPress={() => setIsLoginScreen(false)} />
         </>
       ) : (
